@@ -147,7 +147,7 @@ int print_hexxa(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (write_char('0'));
+		return (create_char('0'));
 	if (fig < 1)
 		return (-1);
 	length = base_len(fig, 16);
