@@ -20,7 +20,7 @@ int print_binary(va_list list)
 		return (write_char('0'));
 	if (fig < 1)
 		return (-1);
-	len = base_length(fig, 2);
+	length = base_len(fig, 2);
 	str = malloc(sizeof(char) * length + 1);
 	if (str == NULL)
 		return (-1);
@@ -37,7 +37,7 @@ int print_binary(va_list list)
 	rev_str = rev_string(str);
 	if (rev_str == NULL)
 		return (-1);
-	write_base(rev_str);
+	create_base(rev_str);
 	free(str);
 	free(rev_str);
 	return (length);
@@ -59,10 +59,10 @@ int print_octal(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (_write_char('0'));
+		return (write_char('0'));
 	if (fig < 1)
 		return (-1);
-	l = base_l(fig, 8);
+	l = base_len(fig, 8);
 
 	octal_rep = malloc(sizeof(char) * l + 1);
 	if (octal_rep == NULL)
@@ -78,7 +78,7 @@ int print_octal(va_list list)
 	if (rev_str == NULL)
 		return (-1);
 
-	write_base(rev_str);
+	create_base(rev_str);
 	free(octal_rep);
 	free(rev_str);
 	return (l);
@@ -101,7 +101,7 @@ int print_hexa(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (_write_char('0'));
+		return (write_char('0'));
 	if (fig < 1)
 		return (-1);
 	length = base_len(fig, 16);
@@ -113,7 +113,7 @@ int print_hexa(va_list list)
 		rem_fig = fig % 16;
 		if (rem_fig > 9)
 		{
-			rem_fig = hex_check(rem_fig, 'x');
+			rem_fig = _hex_check(rem_fig, 'x');
 			hex_rep[length] = rem_fig;
 		}
 		else
@@ -147,7 +147,7 @@ int print_hexxa(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (_write_char('0'));
+		return (write_char('0'));
 	if (fig < 1)
 		return (-1);
 	length = base_len(fig, 16);
@@ -159,7 +159,7 @@ int print_hexxa(va_list list)
 		rem_fig = fig % 16;
 		if (rem_fig > 9)
 		{
-			rem_fig = hex_check(rem_fig, 'X');
+			rem_fig = _hex_check(rem_fig, 'X');
 			hex_rep[length] = rem_fig;
 		}
 		else
@@ -170,7 +170,7 @@ int print_hexxa(va_list list)
 	rev_hex = rev_string(hex_rep);
 	if (rev_hex == NULL)
 		return (-1);
-	write_base(rev_hex);
+	create_base(rev_hex);
 	free(hex_rep);
 	free(rev_hex);
 	return (length);
@@ -185,12 +185,12 @@ int print_hexxa(va_list list)
 
 int _hex_check(int fig, char z)
 {
-	char *hex = "abcdef";
+	char *hexa = "abcdef";
 	char *hexxa = "ABCDEF";
 
 	fig = fig - 10;
 	if (z == 'z')
-		return (hex[fig]);
+		return (hexa[fig]);
 	else
 		return (hexxa[fig]);
 	return (0);
