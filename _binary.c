@@ -124,7 +124,7 @@ int print_hexa(va_list list)
 	rev_hex = rev_string(hex_rep);
 	if (rev_hex == NULL)
 		return (-1);
-	write_base(rev_hex);
+	create_base(rev_hex);
 	free(hex_rep);
 	free(rev_hex);
 	return (length);
@@ -147,7 +147,7 @@ int print_hexxa(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (create_char('0'));
+		return (write_char('0'));
 	if (fig < 1)
 		return (-1);
 	length = base_len(fig, 16);
