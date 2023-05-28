@@ -53,7 +53,7 @@ int print_integer(va_list list)
 {
 	int fig_len;
 
-	fig_len = print_number(list);
+	fig_len = _print_number(list);
 	return (fig_len);
 }
 
@@ -70,9 +70,9 @@ int unsigned_integer(va_list list)
 	fig = va_arg(list, unsigned int);
 
 	if (fig == 0)
-		return (print_unsgined_number(fig));
+		return (_print_unsgined_number(fig));
 
 	if (fig < 1)
 		return (-1);
-	return (print_unsgined_number(fig));
+	return (_print_unsgined_number(fig));
 }
