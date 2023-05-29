@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 	{
 		if (format[n] != '%')
 		{
-			buffer[buff_i++] = format[n];
+			buffer[buff_ind++] = format[n];
 			if (buff_ind == BUFF_SIZE)
 				print_buffer(buffer, &buff_ind);
 			/* write(1, &format[n], 1);*/
