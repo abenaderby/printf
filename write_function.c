@@ -88,8 +88,7 @@ int write_number(int is_negative, int ind, char buffer[],
  * @extra_c: extra char
  * Return: characters
  */
-int write_num(int ind, char buffer[],
-	int flags, int width, int prec,
+int write_num(int ind, char buffer[], int flags, int width, int prec,
 	int len, char pa, char extra_c)
 {
 	int j, pa_start = 1;
@@ -121,13 +120,12 @@ int write_num(int ind, char buffer[],
 				buffer[--ind] = extra_c;
 			return (write(1, &buffer[1], j - 1) + write(1, &buffer[ind], len));
 		}
-
 		else if (!(flags & F_MINUS) && pa == '0')
 		{
 			if (extra_c)
-				buffer[--pa] = extra_c;
-			return (write(1, &buffer[pa_start], j - pa) +
-				write(1, &buffer[ind], len - (1 - pa)));
+				buffer[--pa_start] = extra_c;
+			return (write(1, &buffer[pa_start], j - pa_start) +
+				write(1, &buffer[ind], len - (1 - pa_start)));
 		}
 	}
 	if (extra_c)
